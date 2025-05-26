@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Index Page</title>
+  </head>
+  <body>
+    <h1><%= title%></h1>
+    <a href="/new">Form</a>
+    <ul>
+      <% messages.forEach(message => { %>
+      <li>
+        <%=message.user %>: <%=message.text%> on <%=message.added%>
+        <a href="/details?id=<%=message.id%>">Details</a>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
