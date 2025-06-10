@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
+const messagesController = require("../controllers/messagesController");
 
 const messages = [
   { id: uuidv4(), text: "Hi there!", user: "Amando", added: new Date() },
@@ -8,25 +9,12 @@ const messages = [
   { id: uuidv4(), text: "goodbye", user: "Charles", added: new Date() },
 ];
 
-router.get("/", (req, res) => {
-  res.render("index", { title: "Mini Messageboard", messages: messages });
-});
+router.get("/", messagesController.index);
 
-router.get("/new", (req, res) => res.render("form"));
+router.get("/new", messagesController.getCreateMessageForm);
 
-router.post("/new", (req, res) => {
-  const user = req.body.author;
-  const text = req.body.message;
+router.post("/new", messagesController.createNewMessage);
 
-  messages.push({ id: uuidv4(), text: text, user: user, added: new Date() });
-  res.redirect("/");
-});
-
-router.get("/details", (req, res) => {
-  const id = req.query.id;
-  const message = messages.find((message) => message.id === id);
-
-  res.render("detail", { message: message });
-});
+router.get("/details", messagesController.detail);
 
 module.exports = router;

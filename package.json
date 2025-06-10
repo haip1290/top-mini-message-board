@@ -19,8 +19,11 @@
   },
   "homepage": "https://github.com/haip1290/top-mini-message-board#readme",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "pg": "^8.16.0",
+    "pq": "^0.0.3",
     "uuid": "^11.1.0"
   }
 }
